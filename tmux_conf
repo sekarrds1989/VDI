@@ -1,0 +1,106 @@
+unbind-key C-b
+set-option -g prefix C-a
+bind-key C-a send-prefix
+
+
+# 0 is too far from ` ;)
+set -g base-index 1
+
+# Automatically set window title
+#set-window-option -g automatic-rename on
+#set-option -g set-titles on
+
+#set -g default-terminal screen-256color
+set -g status-keys vi
+set -g history-limit 10000
+
+setw -g mode-keys vi
+#setw -g mode-mouse on
+setw -g monitor-activity on
+
+bind-key v split-window -h
+bind-key s split-window -v
+
+bind-key J resize-pane -D 5
+bind-key K resize-pane -U 5
+bind-key H resize-pane -L 5
+bind-key L resize-pane -R 5
+
+bind-key M-j resize-pane -D
+bind-key M-k resize-pane -U
+bind-key M-h resize-pane -L
+bind-key M-l resize-pane -R
+
+# Vim style pane selection
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# Use Alt-vim keys without prefix key to switch panes
+bind -n M-h select-pane -L
+bind -n M-j select-pane -D
+bind -n M-k select-pane -U
+bind -n M-l select-pane -R
+
+# Use Alt-arrow keys without prefix key to switch panes
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
+
+# Shift arrow to switch windows
+bind -n S-Left  previous-window
+bind -n S-Right next-window
+bind-key C-a last-window
+
+# No delay for escape key press
+set -sg escape-time 0
+
+# Reload tmux config
+bind r source-file ~/.tmux.conf; display-message "~/.tmux.conf reloaded"
+
+
+set -g default-terminal "xterm-256color"
+# set-window-option -g xterm-keys on
+# set -g xterm-keys on
+
+
+
+## Clipboard integration
+# ctrl+c to send to clipboard
+bind C-c run "tmux save-buffer - | xclip -i -sel clipboard"
+
+# ---------------------------
+#     LAYOUT / STYLE
+# ---------------------------
+
+# Monokai is best theme.
+# Adapted from: https://github.com/ZachMassia/dotfiles/blob/master/tmux.conf
+# Bar colors
+set -g status-bg "#303030" # monokai-bg+2
+set -g status-fg "#F5F5F5" # monokai-fg
+
+# Update rate
+set -g status-interval 30
+
+# Bar position
+set -g status-position top
+
+# Left status
+set -g status-left '[#S]'
+
+# Right status
+set -g status-right-length 90
+#set -g status-right "#(tmuxer nowplaying bat) │ %b %d (%a) │ %I:%M %p"
+set -g status-right "%b %d (%a) │ %I:%M %p"
+
+# default window title colors
+#set-window-option -g window-status-fg "#8b8970" # monokai-fg-1
+#set-window-option -g window-status-bg "#303030" # monokai-bg+2
+set-window-option -g window-status-attr dim
+
+# active window title colors
+#set-window-option -g window-status-current-fg "#87D700" # monokai-green
+#set-window-option -g window-status-current-bg "#303030" # monokai-bg+2
+
