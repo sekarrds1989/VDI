@@ -1,3 +1,6 @@
+
+" CONFIGS -------------------------------------------------------------- {{{
+
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
 
@@ -78,9 +81,13 @@ set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 set ic
 
 set tags=./tags,tags;$HOME
+let Tlist_Ctags_Cmd="/usr/intel/pkgs/ctags/5.8/bin/ctags"
+let Tlist_Use_Right_Window = 1
+let Tlist_GainFocus_On_ToggleOpen = 1
 
 colorscheme molokai
 " colorscheme gruvbox
+" }}}
 
 " PLUGINS ---------------------------------------------------------------- {{{
 
@@ -94,11 +101,13 @@ Plug 'inkarkat/vim-mark'
 
 Plug 'morhetz/gruvbox'
 Plug 'yegappan/taglist'
+Plug 'sudar/comments.vim'
+
 
 call plug#end()
 
-source ~/.vim/plugged/gtags.vim
-" source ~/.vim/plugged/gtags-cscope.vim
+"source ~/.vim/plugged/gtags.vim
+source ~/.vim/plugged/gtags-cscope.vim
 " }}}
 
 
@@ -106,8 +115,10 @@ source ~/.vim/plugged/gtags.vim
 
 " Mappings code goes here.
 
+nnoremap <leader>t :TlistToggle<cr>
 " Press the space bar to type the : character in command mode.
 nnoremap <space> :
+nnoremap wq :wq<cr>
 
 " Center the cursor vertically when moving to the next word during a search.
 nnoremap n nzz
@@ -127,14 +138,14 @@ nnoremap <c-l> <c-w>l
 " CTRL+UP, CTRL+DOWN, CTRL+LEFT, or CTRL+RIGHT.
 " Tmux sends same signal for default arrow keys so this messus up vim behavior
 " use different combination when needed
-" noremap A <c-w>+
-" noremap B <c-w>-
-" noremap D <c-w>>
-" noremap C <c-w><
+" noremap OA <c-w>+
+" noremap OB <c-w>-
+" noremap OD <c-w>>
+" noremap OC <c-w><
 
 " NERDTree specific mappings.
 " Map the F3 key to toggle NERDTree open and close.
-nnoremap  :NERDTreeFocus<cr>
+nnoremap <leader>nt :NERDTreeToggle<cr>
 
 " have nerdtree ignore certain files and directories.
 let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$']
@@ -145,10 +156,10 @@ nnoremap <silent> U :redo<cr>
 " Set the backslash as the leader key.
 let mapleader = "\\"
 
-" set paste when \p is pressed                                                                                                                                                                                                              
-nnoremap <leader>p :set paste<CR>
-" set nopaste when \o is pressed                                                                                                                                                                                                            
-nnoremap <leader>o :set nopaste<CR>
+" set paste when \p is pressed                                                                                                                                                                                                                                                     
+nnoremap <leader>p :set paste<CR> 
+" set nopaste when \o is pressed                                                                                                                                                                                                                                                     
+nnoremap <leader>o :set nopaste<CR> 
 
 " map folding commands
 nnoremap <leader>[ zo
@@ -177,7 +188,7 @@ if version >= 703
     set backupcopy=yes
 
     set undofile
-    set undodir=/p/psg/swip/w/drathina/vim_bkup/undo
+    set undodir=/p/psg/swip/w/drathina/vim_bkup/undo 
     set undoreload=10000
 
     " configure bkup directories

@@ -1,8 +1,8 @@
 # .bash_profile
 if [[ $BASH_PROFILE_RUNNING_ALREADY != yes ]]; then
-        BASH_PROFILE_RUNNING_ALREADY=yes;
+	BASH_PROFILE_RUNNING_ALREADY=yes;
 else
-        return;
+	return;
 fi
 # If not running interactively, don't do anything
 if [[ $- != *i* ]]; then return; fi
@@ -13,11 +13,11 @@ alias tags='ctags -R -f tags '
 
 function v()
 {
-        if [ $1 -a -L $1 ];then
-                vim $(readlink -e $1)
-                return;
-        fi
-        vim $@
+	if [ $1 -a -L $1 ];then
+		vim $(readlink -e $1)
+		return;
+	fi
+	vim $@
 }
 #alias v="vim"
 alias vi="vim"
@@ -43,38 +43,6 @@ export LANG=en_US.UTF-8
 export LC_CTYPE="en_US.UTF-8"
 export LANGUAGE=en_US.UTF-8
 
-function VGtags()
-{
-#echo vim -c ":Gtags $1 $2"
-        if [[ $# -le 1 ]]
-        then
-                return
-        fi
-        file=$2
-        if [[ $1 = "p" ]]
-        then
-                declare -a filename_lineno=($(echo $2 | tr "[: ]" " "))
-                file="${filename_lineno[0]}"
-        fi
-
-        :> ~/.vim/tmp/vfiles.txt
-        vim -c ":call Gtags_$1(\"$file\")"
-        . ~/.vim/tmp/vfiles.txt
-}
-
-
-
-alias p="VGtags p"
-alias x="VGtags x"
-alias cx="VGtags cx"
-alias d="VGtags dx"
-alias c="VGtags c"
-alias r="VGtags r"
-alias s="VGtags s"
-alias g="VGtags g"
-alias DIFF="DiffFiles "
-
-
 STARTFGCOLOR='\e[0;34m';
 STARTBGCOLOR="\e[47m"
 ENDCOLOR="\e[0m"
@@ -84,7 +52,9 @@ ENDCOLOR="\e[0m"
 # without color
 export PS1='[${PWD#${PWD%/*/*/*}/}]\$ '
 
-
+# turn off Software flow control, by mistake we press ctrl-s and it hangs
+# https://superuser.com/questions/1390977/pressing-ctrl-s-by-mistake-while-using-vim
+stty -ixon
 
 set -o vi
 set editing-mode vi
@@ -93,27 +63,27 @@ set convert-meta on
 set bell-style none
 
 addalias() {
-        echo "alias "$1"=\""$2"\"" >> ~/.bash_aliases
+	echo "alias "$1"=\""$2"\"" >> ~/.bash_aliases
 }
 
 cd(){
-        dir=$1;
+	dir=$1;
 #to_dir="$(echo echo ${!dir} |sh )"
 #echo "${to_dir}, ${dir}, ${!dir}"
 
-        if [[ $# -eq 0 ]]; then
-                builtin cd $HOME;
-        elif [[ "$dir" == "-" ]]; then
-                builtin cd -
-                elif [[ -d ${dir} ]]; then
-                builtin cd $dir;
-        elif [[ -d ${to_dir} ]]; then
-                builtin cd $to_dir;
-        elif [[ "${dir}" = "base" ]]; then
-                builtin cd "${!dir}" ;
-        else
-                builtin cd "${dir}" ;
-        fi ;
+	if [[ $# -eq 0 ]]; then
+		builtin cd $HOME;
+	elif [[ "$dir" == "-" ]]; then
+		builtin cd -
+		elif [[ -d ${dir} ]]; then
+		builtin cd $dir;
+	elif [[ -d ${to_dir} ]]; then
+		builtin cd $to_dir;
+	elif [[ "${dir}" = "base" ]]; then
+		builtin cd "${!dir}" ;
+	else
+		builtin cd "${dir}" ;
+	fi ;
 #echo -e "[${PWD}]";
 #echo -ne "\033]0;${HOST}: ${PWD}\007";
 #echo "${PWD}" > ${HOME}/.screen_pwd_${STY#*.}
@@ -175,13 +145,6 @@ WHITE='\e[1;37m'
 NC='\e[0m' # No Color
 
 
-function ps1()
-{
-        export PS1="[\`pwd\`]"
-}
-
-
-
 #single tab completion
 set show-all-if-ambiguous on
 set completion-query-items 3500
@@ -198,7 +161,7 @@ export LS_COLORS
 
 function cwd()
 {
-        return "$(pwd)"
+	return "$(pwd)"
 }
 
 #ESC timeout
@@ -207,10 +170,10 @@ set keyseq-timeout 0
 # https://stackoverflow.com/questions/10158508/lose-vim-colorscheme-in-tmux-mode/41626377
 alias tmux="TERM=screen-256color-bce tmux"
 
-touch ~/.custom_profile
-touch ~/.custom_vimrc
-. ~/.custom_profile
-
 if [ -s ~/.bashrc ]; then
-        source ~/.bashrc;
+	source ~/.bashrc;
 fi
+
+ 
+
+
