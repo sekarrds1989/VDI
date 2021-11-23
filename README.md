@@ -1,7 +1,9 @@
 # VDI
 Work environment setup
 
-Following are majorly needed configs.
+Following are majorly needed configs. I've highlighted few of the notable properties supported.
+Each line has appropriate comment added to explain its behavior
+
 ## vimrc: 
 - Configure appropriate path for "backupdir".
 - Open Vim on some file and Run PlugInstall to install all required plugin's. 
