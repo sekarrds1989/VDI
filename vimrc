@@ -115,6 +115,13 @@ source ~/.vim/plugged/gtags-cscope.vim
 
 " Mappings code goes here.
 
+nnoremap <Tab> >>
+nnoremap <S-Tab> <<
+
+" Mark Multiple word highlighter
+" https://github.com/inkarkat/vim-mark
+
+"taglist sidebar toggler
 nnoremap <leader>t :TlistToggle<cr>
 " Press the space bar to type the : character in command mode.
 nnoremap <space> :
@@ -225,32 +232,31 @@ set laststatus=2
 
 " GTAGS ------------------------------------------------------------ {{{
 
-" GTAGS shortcut
-
-"Input ",gd". It searches the string at the current cursor position from tag files.(it's like searching definition)
-nmap <Leader>gd :Gtags -i <C-R>=expand("<cword>")<CR><CR>
-"Input ",gr". It searches the referenced places of the string where the cursor is located.
-nmap <Leader>gr :Gtags -ir <C-R>=expand("<cword>")<CR><CR>
-"Input ",gs". It searches the symbols which are not defined in GTAGS.
-nmap <Leader>gs :Gtags -is <C-R>=expand("<cword>")<CR><CR>
-"Input ",gg". It searches "pattern" from all files.(*.h, *.c, *.txt and etc)
-nmap <Leader>gg :Gtags -igo <C-R>=expand("<cword>")<CR><CR>
-"Input ",gp". It searches files.
-nmap <Leader>gp :Gtags -iPo <C-R>=expand("<cword>")<CR><CR>
-"Input ",ge". It searches "--regexp" pattern.
-nmap <Leader>ge :Gtags -ige <C-R>=expand("<cword>")<CR><CR>
-
-"These keymaps are same with above, except that the above command searches the string at the current cursor position. Meanwhile, the commands below need to enters the string to search for
-nmap <Leader>ild :Gtags -i
-nmap <Leader>ilr :Gtags -ir
-nmap <Leader>ils :Gtags -is
-nmap <Leader>ilg :Gtags -igo
-nmap <Leader>ilp :Gtags -iPo
-nmap <Leader>ile :Gtags -ige
-
 let g:Gtags_No_Auto_Jump=1
 
 
+" Jump back to previous tag using Ctrl-d
+" ;) coz Ctrt-t is not easy
+nmap <C-d> <C-t>
+
+nnoremap <F11> :tp<CR>
+nnoremap <F12> :tn<CR>
+nnoremap <C-r> :cs find s <C-R>=expand("<cword>")<CR><CR>
+
+" there are many useful tips here
+" https://vim.fandom.com/wiki/Browsing_programs_with_tags
+
+" normal command
+":nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+":nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+":nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+":nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+":nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+":nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+":nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+"
+"For opening result in horizontal window <c-space>
+"For opening result in vertical window <C-space-space>
 
 " }}}
 
