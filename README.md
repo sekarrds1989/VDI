@@ -8,14 +8,48 @@ Each line has appropriate comment added to explain its behavior
 - Configure appropriate path for "backupdir".
 - Open Vim on some file and Run PlugInstall to install all required plugin's. 
 - you will get "GTAGS not found." error whenever a file is opened from a non-gtags enabled folder.
+### Imp Shortcuts:
+#### gtags browsing:
+C-]     -   Jump to definition of tag under cursor
+C-d     -   Jump back to last tag
+C-r     -   List all references
+\       -   Leader key ( used to define more shortcuts)
+\nt     -   Toggle NerdTree
+\t      -   Toggle Tagbar
+Space   -   Start command bar with colon
+\l      -   Toggle vim Locationlist
+\q      -   Toggle vim quicklist
+            quicklist can be used to process bash console output to parse thru each files output.
+            ex: 
+                1) grep for a string in a folder
+                2) open vim
+                3) open quicklist
+                4) you will see all grep results here. now you can move thru them and jump to that file directly
+\p      -   :set paste
+\o      -   :set nopaste
+\[      -   open folds
+\]      -   close folds
+
+#### vim cmd bar
+cs f s <str>    - Find all refrences of given string
+cs              - List all possiblities of cscope
+
+
 
 ## bashrc:
  - PS promt will display last 3 parent folders.
  - backward history search support using up arrow-keys enabled 
+### Imp Shortcuts:
+alltags     -   build all tags (gtags and cscope)
+                cscope is needed for gtags-cscope integration
+check alias file for more details
 
 ## tmux.conf:
  - very minimal and needed configs added.
  - comment added for each block
+### Imp Shortcuts:
+C-aC-a      -   switch between windows
+C-a[Num]    -   Jump to window-Num
 
 ## putty-manager:
 
