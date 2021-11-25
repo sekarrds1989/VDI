@@ -81,9 +81,6 @@ set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 set ic
 
 set tags=./tags,tags;$HOME
-let Tlist_Ctags_Cmd="/usr/intel/pkgs/ctags/5.8/bin/ctags"
-let Tlist_Use_Right_Window = 1
-let Tlist_GainFocus_On_ToggleOpen = 1
 
 colorscheme molokai
 " colorscheme gruvbox
@@ -100,7 +97,9 @@ Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-mark'
 
 Plug 'morhetz/gruvbox'
-Plug 'yegappan/taglist'
+" There is a defect in taglist , it failed to find index for some file.
+"Plug 'yegappan/taglist'
+Plug 'preservim/tagbar'
 Plug 'sudar/comments.vim'
 
 
@@ -114,6 +113,8 @@ source ~/.vim/plugged/gtags-cscope.vim
 " MAPPINGS --------------------------------------------------------------- {{{
 
 " Mappings code goes here.
+let g:tagbar_ctags_bin="/usr/intel/pkgs/ctags/5.8/bin/ctags"
+
 
 nnoremap <Tab> >>
 nnoremap <S-Tab> <<
@@ -122,7 +123,7 @@ nnoremap <S-Tab> <<
 " https://github.com/inkarkat/vim-mark
 
 "taglist sidebar toggler
-nnoremap <leader>t :TlistToggle<cr>
+nnoremap <leader>t :TagbarToggle<cr>
 " Press the space bar to type the : character in command mode.
 nnoremap <space> :
 nnoremap wq :wq<cr>
@@ -156,6 +157,7 @@ nnoremap <leader>nt :NERDTreeToggle<cr>
 
 " have nerdtree ignore certain files and directories.
 let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$']
+let NERDTreeStatusline = "NT"
 
 " map U to redo
 nnoremap <silent> U :redo<cr>
@@ -207,11 +209,11 @@ endif
 
 " You can split a window into sections by typing `:split` or `:vsplit`.
 " Display cursorline and cursorcolumn ONLY in active window.
-augroup cursor_off
-    autocmd!
-    autocmd WinLeave * set nocursorline nocursorcolumn
-    autocmd WinEnter * set cursorline cursorcolumn
-augroup END
+"augroup cursor_off
+    "autocmd!
+    "autocmd WinLeave * set nocursorline nocursorcolumn
+    "autocmd WinEnter * set cursorline cursorcolumn
+"augroup END
 
 " }}}
 
@@ -222,7 +224,18 @@ augroup END
 " Clear status line when vimrc is reloaded.
 
 set laststatus=2
-
+set statusline=
+"set statusline+=%#LineNr#
+"set statusline+=\ %t
+set statusline+=%{expand('%:~:.')}
+set statusline+=%m
+"set statusline+=%#CursorColumn#
+"set statusline+=\ %y
+"set statusline+=\ -\ %{tagbar#currenttag('[%s]','')}
+set statusline+=\ -\ %{tagbar#currenttag('%s',\ '',\ 'f',\ 'scoped-stl')}
+set statusline+=%=
+set statusline+=\ %p%%
+set statusline+=\ %l:%c
 
 
 
