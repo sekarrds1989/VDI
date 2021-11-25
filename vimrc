@@ -4,6 +4,10 @@
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
 
+" If on and using a tag file in another directory, file names in that
+"  tag file are relative to the directory where the tag file is.
+set notagrelative
+
 " Enable type file detection. Vim will be able to try to detect the type of file in use.
 filetype on
 
@@ -102,6 +106,11 @@ Plug 'morhetz/gruvbox'
 Plug 'preservim/tagbar'
 Plug 'sudar/comments.vim'
 
+Plug 'milkypostman/vim-togglelist'
+Plug 'junegunn/fzf'
+
+" https://www.freecodecamp.org/news/how-to-search-project-wide-vim-ripgrep-ack/ 
+Plug 'mileszs/ack.vim'
 
 call plug#end()
 
@@ -113,6 +122,7 @@ source ~/.vim/plugged/gtags-cscope.vim
 " MAPPINGS --------------------------------------------------------------- {{{
 
 " Mappings code goes here.
+"let g:toggle_list_copen_command="Copen"
 let g:tagbar_ctags_bin="/usr/intel/pkgs/ctags/5.8/bin/ctags"
 
 
@@ -174,10 +184,13 @@ nnoremap <leader>o :set nopaste<CR>
 nnoremap <leader>[ zo
 nnoremap <leader>] zc
 
+nnoremap <leader>f :FZF<CR> 
+
 " }}}
 
 
 " VIMSCRIPT -------------------------------------------------------------- {{{
+"
 
 " This will enable code folding.
 " Use the marker method of folding.
@@ -242,7 +255,6 @@ set statusline+=\ %l:%c
 " }}}
 "
 
-
 " GTAGS ------------------------------------------------------------ {{{
 
 let g:Gtags_No_Auto_Jump=1
@@ -252,7 +264,9 @@ let g:Gtags_No_Auto_Jump=1
 " ;) coz Ctrt-t is not easy
 nmap <C-d> <C-t>
 
+" previous tag
 nnoremap <F11> :tp<CR>
+" next tag
 nnoremap <F12> :tn<CR>
 nnoremap <C-r> :cs find s <C-R>=expand("<cword>")<CR><CR>
 
@@ -271,6 +285,33 @@ nnoremap <C-r> :cs find s <C-R>=expand("<cword>")<CR><CR>
 "For opening result in horizontal window <c-space>
 "For opening result in vertical window <C-space-space>
 
+" }}}
+
+
+" ack.vim --- {{{
+
+" Use ripgrep for searching ⚡️
+" Options include:
+" --vimgrep -> Needed to parse the rg response properly for ack.vim
+" --type-not sql -> Avoid huge sql file dumps as it slows down the search
+" --smart-case -> Search case insensitive if all lowercase pattern, Search case sensitively otherwise
+let g:ackprg = 'rg --vimgrep --type-not sql --smart-case'
+
+" Auto close the Quickfix list after pressing '<enter>' on a list item
+let g:ack_autoclose = 1
+
+" Any empty ack search will search for the work the cursor is on
+let g:ack_use_cword_for_empty_search = 1
+
+" Don't jump to first match
+cnoreabbrev Ack Ack!
+
+" Maps <leader>/ so we're ready to type the search keyword
+nnoremap <Leader>a :Ack!<Space>
+
+" Navigate quickfix list with ease
+nnoremap <silent> [q :cprevious<CR>
+nnoremap <silent> ]q :cnext<CR>
 " }}}
 
 

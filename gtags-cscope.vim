@@ -87,7 +87,7 @@
 " To ignore letter case when searching:
    let GtagsCscope_Ignore_Case = 1
 " To use absolute path name:
-   let GtagsCscope_Absolute_Path = 1
+   "let GtagsCscope_Absolute_Path = 0
 " To deterring interruption:
    let GtagsCscope_Keep_Alive = 1
 " If you hope auto loading:

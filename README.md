@@ -28,6 +28,10 @@ Space   |   Start command bar with colon
 \o      |   :set nopaste
 \[      |   open folds
 \]      |   close folds
+\a      |   launch ack.vim search , if pressed enter without any input , searchs for the word under the cursor  and populates quicklist
+[q      |   navigate in quicklist next 
+]q      |   navigate in quicklist prev
+\f      |   launch fuzzy search
 
 #### vim cmd bar
 commands | action
@@ -41,8 +45,10 @@ cs           | List all possiblities of cscope
  - PS promt will display last 3 parent folders.
  - backward history search support using up arrow-keys enabled 
 ### Imp Shortcuts:
-alltags     -   build all tags (gtags and cscope)
-                cscope is needed for gtags-cscope integration
+commands | action
+----------|-------
+alltags          |   build all tags (gtags and cscope), cscope is needed for gtags-cscope integration
+vim -t tag-name |   open the file having this tag
                 
 check alias file for more details
 
