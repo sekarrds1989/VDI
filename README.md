@@ -1,8 +1,11 @@
 # VDI
 Work environment setup
 
-Following are majorly needed configs. I've highlighted few of the notable properties supported.
-Each line has appropriate comment added to explain its behavior
+Clone this repo to a directory.
+Copy required files(vimrc/bashrc,etc) to their equivalent location in your home directory.
+
+I've highlighted few of the notable properties for each of the file and added comments as much as possible.
+
 
 ## vimrc: 
 - Configure appropriate path for "backupdir".
