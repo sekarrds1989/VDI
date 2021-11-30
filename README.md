@@ -32,6 +32,10 @@ Space   |   Start command bar with colon
 [q      |   navigate in quicklist next 
 ]q      |   navigate in quicklist prev
 \f      |   launch fuzzy search
+\m      |   highlight the word under cursor with a different color
+\b      |   navigate in vim buffers
+\bn     |   next vim buffer
+\bp     |   prev vim buffer
 
 #### vim cmd bar
 commands | action
