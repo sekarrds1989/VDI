@@ -248,9 +248,9 @@ function! s:GtagsCscope()
     :nmap <C-p> :cp<CR>
     " Context search. See the --from-here option of global(1).
     :nmap <C-\><C-\><C-]> :cs find d <C-R>=expand("<cword>")<CR>:<C-R>=line('.')<CR>:%<CR>
-    :nmap <2-LeftMouse>   :cs find d <C-R>=expand("<cword>")<CR>:<C-R>=line('.')<CR>:%<CR>
-    :nmap g<LeftMouse>    :cs find d <C-R>=expand("<cword>")<CR>:<C-R>=line('.')<CR>:%<CR>
-    :nmap <C-LeftMouse>   :cs find d <C-R>=expand("<cword>")<CR>:<C-R>=line('.')<CR>:%<CR>
+    ":nmap <2-LeftMouse>   :cs find d <C-R>=expand("<cword>")<CR>:<C-R>=line('.')<CR>:%<CR>
+    ":nmap g<LeftMouse>    :cs find d <C-R>=expand("<cword>")<CR>:<C-R>=line('.')<CR>:%<CR>
+    ":nmap <C-LeftMouse>   :cs find d <C-R>=expand("<cword>")<CR>:<C-R>=line('.')<CR>:%<CR>
     " The following mappings are unnecessary, because you can use the default mapping.
     ":nmap g<RightMouse>   <C-t>
     ":nmap <C-RightMouse>  <C-t>

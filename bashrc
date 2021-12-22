@@ -11,15 +11,18 @@ if [[ $- != *i* ]]; then return; fi
 
 alias tags='ctags -R -f tags '
 
-function v()
-{
-	if [ $1 -a -L $1 ];then
-		vim $(readlink -e $1)
-		return;
-	fi
-	vim $@
-}
-#alias v="vim"
+#function v()
+#{
+	#if [ $1 -a -L $1 ];then
+		#vim $(readlink -e $1)
+		#return;
+	#fi
+	#vim $@
+#}
+#alias v=/usr/intel/pkgs/vim/8.2.1001/bin/vim
+#alias vi=/usr/intel/pkgs/vim/8.2.1001/bin/vim
+#alias vd=/usr/intel/pkgs/vim/8.2.1001/bin/vimdiff
+alias v="vim"
 alias vi="vim"
 alias vd="vimdiff"
 

@@ -4,6 +4,19 @@
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
 
+set mouse=a
+
+"set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/.viminfo
+"           | |    |   |   |    | |  + viminfo file path
+"           | |    |   |   |    | + file marks 0-9,A-Z 0=NOT stored
+"           | |    |   |   |    + disable 'hlsearch' loading viminfo
+"           | |    |   |   + command-line history saved
+"           | |    |   + search history saved
+"           | |    + files marks saved
+"           | + lines saved each register (old name for <, vi6.2)
+"           + save/restore buffer list
+
+
 " If on and using a tag file in another directory, file names in that
 "  tag file are relative to the directory where the tag file is.
 set notagrelative
@@ -94,7 +107,6 @@ colorscheme molokai
 
 " Plugin code goes here.
 call plug#begin('~/.vim/plugged')
-" Plug 'dense-analysis/ale'
 Plug 'preservim/nerdtree'
 " Highligh multiple words
 Plug 'inkarkat/vim-ingo-library'
@@ -102,7 +114,6 @@ Plug 'inkarkat/vim-mark'
 
 Plug 'morhetz/gruvbox'
 " There is a defect in taglist , it failed to find index for some file.
-"Plug 'yegappan/taglist'
 Plug 'preservim/tagbar'
 Plug 'sudar/comments.vim'
 
@@ -111,10 +122,11 @@ Plug 'junegunn/fzf'
 
 " https://www.freecodecamp.org/news/how-to-search-project-wide-vim-ripgrep-ack/ 
 Plug 'mileszs/ack.vim'
+Plug 'stefandtw/quickfix-reflector.vim'
+Plug 'sk1418/QFGrep'
 
 call plug#end()
 
-"source ~/.vim/plugged/gtags.vim
 source ~/.vim/plugged/gtags-cscope.vim
 " }}}
 
@@ -122,9 +134,18 @@ source ~/.vim/plugged/gtags-cscope.vim
 " MAPPINGS --------------------------------------------------------------- {{{
 
 " Mappings code goes here.
+
+nnoremap <leader>b   :ls<CR>:b<Space>
+nnoremap <leader>bn  :bn<CR>
+nnoremap <leader>bp  :bp<CR>
+
 "let g:toggle_list_copen_command="Copen"
 let g:tagbar_ctags_bin="/usr/intel/pkgs/ctags/5.8/bin/ctags"
 
+"nmap <unique> <2-LeftMouse> <Plug>MarkSet
+:nmap <2-LeftMouse> <leader>m
+":nmap g<LeftMouse>    :cs find d <C-R>=expand("<cword>")<CR>:<C-R>=line('.')<CR>:%<CR>
+":nmap <C-LeftMouse>   :cs find d <C-R>=expand("<cword>")<CR>:<C-R>=line('.')<CR>:%<CR>
 
 nnoremap <Tab> >>
 nnoremap <S-Tab> <<
@@ -238,17 +259,67 @@ endif
 
 set laststatus=2
 set statusline=
-"set statusline+=%#LineNr#
-"set statusline+=\ %t
-set statusline+=%{expand('%:~:.')}
-set statusline+=%m
+"set statusline+=%m
 "set statusline+=%#CursorColumn#
 "set statusline+=\ %y
 "set statusline+=\ -\ %{tagbar#currenttag('[%s]','')}
-set statusline+=\ -\ %{tagbar#currenttag('%s',\ '',\ 'f',\ 'scoped-stl')}
-set statusline+=%=
-set statusline+=\ %p%%
-set statusline+=\ %l:%c
+"set statusline+=\ -\ %{tagbar#currenttag('%s',\ '',\ 'f',\ 'scoped-stl')}
+"set statusline+=%=
+"set statusline+=\ %p%%
+"set statusline+=\ %l:%c
+
+hi ModeColor ctermfg=255 ctermbg=22
+hi ModeSepColor ctermfg=22 ctermbg=94
+
+hi FileColor ctermfg=255 ctermbg=94
+hi FileSepColor ctermfg=94 ctermbg=24
+
+hi FileModeColor ctermfg=255 ctermbg=24
+hi FileModeSepColor ctermfg=24 ctermbg=145
+
+hi VariableDecColor ctermfg=255 ctermbg=23
+"hi SyntaxColor ctermfg=255 ctermbg=145
+
+"hi FuncNameSepColor ctermfg=23 ctermbg=145
+hi FuncNameColor ctermfg=255 ctermbg=95
+hi AttrColor ctermfg=255 ctermbg=23
+
+hi RowColSepColor ctermfg=94 ctermbg=23
+hi RowColColor ctermfg=231 ctermbg=94
+
+hi LocSepColor ctermfg=52 ctermbg=94
+hi LocColor ctermfg=255 ctermbg=52
+
+
+function! GetLeftSep()
+    return "►" "25ba
+endfunction
+function! GetRightSep()
+    return "◄" "25c4
+endfunction
+
+
+function! GetFTagName()
+    return "  ".tagbar#currenttag('%s',\ '',\ 'f',\ 'scoped-stl') 
+endfunction
+
+if has('statusline')
+  set statusline+=%#FileColor#                 " set highlighting
+  " Print only last 3 directories
+  set statusline+=%{expand('%:h:h:t')}              " 2nd last parent dir
+  set statusline+=\\%{expand('%:h:t')}              " parent dir
+  set statusline+=\\%t
+  set statusline+=%#FileSepColor#%{GetLeftSep()}
+  set statusline+=%#FileModeColor#              " syntax highlight group under cursor
+  set statusline+=%m
+  set statusline+=%#VariableDecColor#              " syntax highlight group under cursor
+  set statusline+=%{tagbar#currenttag('%s',\ '',\ 'f',\ 'scoped-stl')}
+  set statusline+=%=                           " ident to the right
+  set statusline+=%#RowColSepColor#%{GetRightSep()}
+  set statusline+=%#RowColColor#\ %5l\ \:\ %-3v\          " cursor position/offset
+  set statusline+=%#LocSepColor#%{GetRightSep()}
+  set statusline+=%#LocColor#\ %(\ %L\ \/\ %-3p%%\ %)\               " file format
+endif
 
 
 
@@ -257,6 +328,8 @@ set statusline+=\ %l:%c
 
 " GTAGS ------------------------------------------------------------ {{{
 
+"let g:quickr_cscope_keymaps = 0
+"let g:quickr_cscope_use_qf_g = 1
 let g:Gtags_No_Auto_Jump=1
 
 
@@ -268,19 +341,38 @@ nmap <C-d> <C-t>
 nnoremap <F11> :tp<CR>
 " next tag
 nnoremap <F12> :tn<CR>
-nnoremap <C-r> :cs find s <C-R>=expand("<cword>")<CR><CR>
+"nnoremap <C-r> :cs find s <C-R>=expand("<cword>")<CR><CR>
+" https://stackoverflow.com/questions/6677756/how-to-put-cscope-output-in-vim-quickfix-window
+"nnoremap <C-r> yiw:cs find s <C-R>=expand("<cword>")<CR><CR>:cwindow<CR>
+
+"https://medium.com/@lakshmankumar12/vim-and-cscope-5f4558c8a8b8
+function! LoadCscopeToQuickFix(currword, oper)
+  execute "normal mZ"
+  execute "set csqf=" . a:oper . "-"
+  execute "lcs find " a:oper . " " . a:currword
+  execute "lopen"
+  execute "wincmd p"
+  execute "normal `Z"
+  execute "set csqf="
+endfunction
+"nmap <Leader>css         <Esc>:call LoadCscopeToQuickFix(expand("<cword>"),"s")<CR>
+"nmap <Leader>csg         <Esc>:call LoadCscopeToQuickFix(expand("<cword>"),"g")<CR>
+"nmap <Leader>csc         <Esc>:call LoadCscopeToQuickFix(expand("<cword>"),"c")<CR>
+nnoremap <C-r> <Esc>:call LoadCscopeToQuickFix(expand("<cword>"), "s")<CR>
+
 
 " there are many useful tips here
 " https://vim.fandom.com/wiki/Browsing_programs_with_tags
 
 " normal command
-":nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-":nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-":nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-":nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-":nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-":nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-":nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+:nmap <C-]> :execute "tag " . expand("<cword>")<CR>
+:nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+:nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+:nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+:nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+:nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+:nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+:nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
 "
 "For opening result in horizontal window <c-space>
 "For opening result in vertical window <C-space-space>
@@ -298,7 +390,7 @@ nnoremap <C-r> :cs find s <C-R>=expand("<cword>")<CR><CR>
 let g:ackprg = 'rg --vimgrep --type-not sql --smart-case'
 
 " Auto close the Quickfix list after pressing '<enter>' on a list item
-let g:ack_autoclose = 1
+"let g:ack_autoclose = 1
 
 " Any empty ack search will search for the work the cursor is on
 let g:ack_use_cword_for_empty_search = 1
