@@ -107,6 +107,7 @@ colorscheme molokai
 
 " Plugin code goes here.
 call plug#begin('~/.vim/plugged')
+"Plug 'hari-rangarajan/CCTree'
 Plug 'preservim/nerdtree'
 " Highligh multiple words
 Plug 'inkarkat/vim-ingo-library'
@@ -134,6 +135,9 @@ source ~/.vim/plugged/gtags-cscope.vim
 " MAPPINGS --------------------------------------------------------------- {{{
 
 " Mappings code goes here.
+" F11 for lprev and F12 for lnext
+nnoremap [23~  :lprev<CR>
+nnoremap [24~  :lnext<CR>
 
 nnoremap <leader>b   :ls<CR>:b<Space>
 nnoremap <leader>bn  :bn<CR>
