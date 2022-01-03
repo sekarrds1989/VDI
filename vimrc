@@ -135,10 +135,27 @@ source ~/.vim/plugged/gtags-cscope.vim
 " MAPPINGS --------------------------------------------------------------- {{{
 
 " Mappings code goes here.
-" F11 for lprev and F12 for lnext
-nnoremap [23~  :lprev<CR>
-nnoremap [24~  :lnext<CR>
 
+" This is done to get Ctrl-i work for jumplist
+" https://travisshears.com/snippets/vim-jumps-fix/
+"
+" JUMPLIST
+nnoremap <F3> <C-i>
+nnoremap <F4> <C-o>
+
+" LOCATION LIST
+" F11 for lprev and F12 for lnext
+nnoremap <F11>  :lprev<CR>
+nnoremap <F12>  :lnext<CR>
+"nnoremap [23~  :lprev<CR>
+"nnoremap [24~  :lnext<CR>
+"
+"QUICKLIST
+nnoremap <C-n> :cn<CR>
+nnoremap <C-p> :cp<CR>
+
+"
+"BUFFERLIST
 nnoremap <leader>b   :ls<CR>:b<Space>
 nnoremap <leader>bn  :bn<CR>
 nnoremap <leader>bp  :bp<CR>
@@ -200,10 +217,10 @@ nnoremap <silent> U :redo<cr>
 " Set the backslash as the leader key.
 let mapleader = "\\"
 
-" set paste when \p is pressed                                                                                                                                                                                                                                                     
-nnoremap <leader>p :set paste<CR> 
-" set nopaste when \o is pressed                                                                                                                                                                                                                                                     
-nnoremap <leader>o :set nopaste<CR> 
+" Toggle paste mode on F2
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
 
 " map folding commands
 nnoremap <leader>[ zo
@@ -342,9 +359,9 @@ let g:Gtags_No_Auto_Jump=1
 nmap <C-d> <C-t>
 
 " previous tag
-nnoremap <F11> :tp<CR>
+"nnoremap <F11> :tp<CR>
 " next tag
-nnoremap <F12> :tn<CR>
+"nnoremap <F12> :tn<CR>
 "nnoremap <C-r> :cs find s <C-R>=expand("<cword>")<CR><CR>
 " https://stackoverflow.com/questions/6677756/how-to-put-cscope-output-in-vim-quickfix-window
 "nnoremap <C-r> yiw:cs find s <C-R>=expand("<cword>")<CR><CR>:cwindow<CR>
