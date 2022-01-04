@@ -9,7 +9,12 @@ I've highlighted few of the notable properties for each of the file and added co
 
 ## vimrc: 
 - Configure appropriate path for "backupdir".
+    backupdir=/p/psg/swip/w/drathina/vim_bkup/bkup & 
+    undodir=/p/psg/swip/w/drathina/vim_bkup/undo
+- copy the autoload folder into your ~/.vim/
+- copy the colors folder into your ~/.vim/
 - Open Vim on some file and Run PlugInstall to install all required plugin's. 
+Known errors:
 - you will get "GTAGS not found." error whenever a file is opened from a non-gtags enabled folder.
 ### Imp Shortcuts:
 #### gtags browsing:
