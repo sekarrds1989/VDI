@@ -140,8 +140,8 @@ source ~/.vim/plugged/gtags-cscope.vim
 " https://travisshears.com/snippets/vim-jumps-fix/
 "
 " JUMPLIST
-nnoremap <F3> <C-i>
-nnoremap <F4> <C-o>
+nnoremap <F3> <C-o>
+nnoremap <F4> <C-i>
 
 " LOCATION LIST
 " F11 for lprev and F12 for lnext

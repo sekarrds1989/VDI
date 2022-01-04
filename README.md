@@ -24,18 +24,21 @@ C-r     |   List all references
 Space   |   Start command bar with colon
 \l      |   Toggle vim Locationlist
 \q      |   Toggle vim quicklist <br> quicklist can be used to process bash console output to parse thru each files output. <br> ex: <br> 1) grep for a string in a folder <br> 2) open vim <br> 3) open quicklist <br> 4) you will see all grep results here. now you can move thru them and jump to that file directly
-\p      |   :set paste
-\o      |   :set nopaste
 \[      |   open folds
 \]      |   close folds
 \a      |   launch ack.vim search , if pressed enter without any input , searchs for the word under the cursor  and populates quicklist
-[q      |   navigate in quicklist next 
-]q      |   navigate in quicklist prev
 \f      |   launch fuzzy search
 \m      |   highlight the word under cursor with a different color
 \b      |   navigate in vim buffers
 \bn     |   next vim buffer
 \bp     |   prev vim buffer
+C-n     |   navigate in quicklist next 
+C-p     |   navigate in quicklist prev
+F2      |   toggle paste mode
+F3      |   Navigate saved cursor positions (old) 
+F4      |   Navigate saved cursor positions (latest)
+F11     |   navigate location list (prev)
+F12     |   navigate location list (next)
 
 #### vim cmd bar
 commands | action
