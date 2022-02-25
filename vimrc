@@ -248,11 +248,11 @@ augroup END
 " This allows you to undo changes to a file even after saving it.
 if version >= 703
     set backup
-    set backupdir=/p/psg/swip/w/drathina/vim_bkup/bkup
+    set backupdir=~/.vim/bkup
     set backupcopy=yes
 
     set undofile
-    set undodir=/p/psg/swip/w/drathina/vim_bkup/undo 
+    set undodir=~/.vim/undo 
     set undoreload=10000
 
     " configure bkup directories
