@@ -2,7 +2,7 @@
 Work environment setup
 
 Clone this repo to a directory.
-Copy required files(vimrc/bashrc,etc) to their equivalent location in your home directory.
+Run "setup.sh" to setup your work env
 
 I've highlighted few of the notable properties for each of the file and added comments as much as possible.
 
