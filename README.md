@@ -20,19 +20,19 @@ Known errors:
 #### gtags browsing:
 shortcuts | action
 ----------|-------
-C-]     | Jump to definition of tag under cursor
+**C-]**     | Jump to definition of tag under cursor
 C-d     |   Jump back to last tag
 C-r     |   List all references
 \       |   Leader key ( used to define more shortcuts)
-\nt     |   Toggle NerdTree
-\t      |   Toggle Tagbar
+**\nt**     |   Toggle NerdTree**
+**\t**      |   Toggle Tagbar**
 Space   |   Start command bar with colon
 \l      |   Toggle vim Locationlist
 \q      |   Toggle vim quicklist <br> quicklist can be used to process bash console output to parse thru each files output. <br> ex: <br> 1) grep for a string in a folder <br> 2) open vim <br> 3) open quicklist <br> 4) you will see all grep results here. now you can move thru them and jump to that file directly
 \[      |   open folds
 \]      |   close folds
-\a      |   launch ack.vim search , if pressed enter without any input , searchs for the word under the cursor  and populates quicklist
-\f      |   launch fuzzy search
+**\a**      |   launch ack.vim search , if pressed enter without any input , searchs for the word under the cursor  and populates quicklist
+**\f**      |   launch fuzzy search
 \m      |   highlight the word under cursor with a different color
 \b      |   navigate in vim buffers
 \bn     |   next vim buffer
