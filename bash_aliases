@@ -1,3 +1,4 @@
+alias cp="cp -i"
 alias wdir="cd /p/psg/swip/w/drathina/"
 alias ddir="cd /p/psg/data/drathina"
 
