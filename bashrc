@@ -53,7 +53,7 @@ ENDCOLOR="\e[0m"
 # export PS1='\[\e[0;38;5;166m\]\w\[\e[0m\] $ '
 # export PS1='\[\e[0;38;5;166m\][${PWD#${PWD%/*/*/*}/}]\[\e[0m\] $ '
 # without color
-export PS1='[${PWD#${PWD%/*/*/*}/}]\$ '
+export PS1='[\u::${PWD#${PWD%/*/*/*}/}]\$ '
 
 # turn off Software flow control, by mistake we press ctrl-s and it hangs
 # https://superuser.com/questions/1390977/pressing-ctrl-s-by-mistake-while-using-vim

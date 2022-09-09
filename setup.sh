@@ -15,7 +15,10 @@ mkdir -p ~/.vim/plugged
 
 mkdir -p bkup
 #copy vimrc 
-cp -i ~/.vimrc bkup/
+if [ -f ~/.vimrc ]; then 
+  cp -i ~/.vimrc bkup/
+fi
+
 cp vimrc ~/.vimrc
 
 #Autoload and colors for vim
@@ -23,8 +26,13 @@ cp -rf autoload ~/.vim/
 cp -rf colors ~/.vim/
 cp gtags-cscope.vim ~/.vim/plugged/
 
-cp -i ~/.bashrc bkup/
-cp -i ~/.bash_aliases bkup/
+if [ -f ~/.bashrc ]; then 
+  cp -i ~/.bashrc bkup/
+fi
+
+if [ -f ~/.bash_aliases ]; then 
+  cp -i ~/.bash_aliases bkup/
+fi
 
 # below given hack is needed for intel work environment
 _user="$(id -u -n)"
