@@ -234,6 +234,11 @@ nnoremap <leader>f :FZF<CR>
 " VIMSCRIPT -------------------------------------------------------------- {{{
 "
 
+" Remove the underline from enabling cursorline:
+highlight clear CursorLine
+" Set line numbering to red background:
+highlight CursorLineNR ctermbg=red
+
 " This will enable code folding.
 " Use the marker method of folding.
 augroup filetype_vim
