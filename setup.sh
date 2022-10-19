@@ -8,37 +8,34 @@ trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
 # echo an error message before exiting
 trap 'echo "\"${last_command}\" command returned exit code $?."' EXIT
 
+bkup_dir_name=bkup/$(date +"%s%d%m")
+
 #directory for backup
 mkdir -p ~/.vim/bkup
 mkdir -p ~/.vim/undo
 mkdir -p ~/.vim/plugged
 
-mkdir -p bkup
+mkdir -p $bkup_dir_name
 #copy vimrc 
-if [ -f ~/.vimrc ]; then 
-  cp -i ~/.vimrc bkup/
-fi
-
-cp vimrc ~/.vimrc
+\cp ~/.vimrc $bkup_dir_name/
+\cp vimrc ~/.vimrc
 
 #Autoload and colors for vim
-cp -rf autoload ~/.vim/
-cp -rf colors ~/.vim/
-cp gtags-cscope.vim ~/.vim/plugged/
+\cp -rf autoload ~/.vim/
+\cp -rf colors ~/.vim/
+\cp gtags-cscope.vim ~/.vim/plugged/
 
-if [ -f ~/.bashrc ]; then 
-  cp -i ~/.bashrc bkup/
-fi
 
-if [ -f ~/.bash_aliases ]; then 
-  cp -i ~/.bash_aliases bkup/
-fi
+\cp ~/.bashrc $bkup_dir_name/
+\cp ~/.bash_aliases $bkup_dir_name/
 
 # below given hack is needed for intel work environment
 _user="$(id -u -n)"
 
-cp bashrc ~/.bash_$_user
-cp bash_aliases ~/.bash_aliases
+\cp bashrc ~/.bash_$_user
+\cp bash_aliases ~/.bash_aliases
+
+\cp tmux.conf ~/.tmux.conf
 
 echo "#!/bin/bash" > ~/.bashrc.$_user
 echo ". ~/.bash_$_user" >> ~/.bashrc.$_user
