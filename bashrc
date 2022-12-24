@@ -4,6 +4,10 @@ if [[ $BASH_PROFILE_RUNNING_ALREADY != yes ]]; then
 else
 	return;
 fi
+
+# use ^? as backspace
+stty erase "^?"
+
 # If not running interactively, don't do anything
 if [[ $- != *i* ]]; then return; fi
 
@@ -22,9 +26,11 @@ alias tags='ctags -R -f tags '
 #alias v=/usr/intel/pkgs/vim/8.2.1001/bin/vim
 #alias vi=/usr/intel/pkgs/vim/8.2.1001/bin/vim
 #alias vd=/usr/intel/pkgs/vim/8.2.1001/bin/vimdiff
-alias v="vim"
-alias vi="vim"
-alias vd="vimdiff"
+# use -X option to disable clipboard
+# https://stackoverflow.com/questions/14635295/vim-takes-a-very-long-time-to-start-up
+alias v="vim -X"
+alias vi="vim -X"
+alias vd="vimdiff -X"
 
 alias grep='grep -sE '
 alias grepc='grep -sE --color=always '
@@ -53,7 +59,8 @@ ENDCOLOR="\e[0m"
 # export PS1='\[\e[0;38;5;166m\]\w\[\e[0m\] $ '
 # export PS1='\[\e[0;38;5;166m\][${PWD#${PWD%/*/*/*}/}]\[\e[0m\] $ '
 # without color
-export PS1='[\u::${PWD#${PWD%/*/*/*}/}]\$ '
+if [ "$HOSTNAME" == "sccj007020" ]; then hname_prefix="V"; else hname_prefix="S"; fi
+export PS1='$hname_prefix [${PWD#${PWD%/*/*/*}/}]\$'
 
 # turn off Software flow control, by mistake we press ctrl-s and it hangs
 # https://superuser.com/questions/1390977/pressing-ctrl-s-by-mistake-while-using-vim
@@ -171,7 +178,9 @@ function cwd()
 set keyseq-timeout 0
 
 # https://stackoverflow.com/questions/10158508/lose-vim-colorscheme-in-tmux-mode/41626377
+# https://unix.stackexchange.com/questions/659150/tmux-sessions-get-killed-on-ssh-logout
 alias tmux="TERM=screen-256color-bce tmux"
+
 
 if [ -s ~/.bashrc ]; then
 	source ~/.bashrc;

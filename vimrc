@@ -1,5 +1,8 @@
 
 " CONFIGS -------------------------------------------------------------- {{{
+"
+set backspace=indent,eol,start
+set colorcolumn=80
 
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
@@ -253,17 +256,17 @@ augroup END
 " This allows you to undo changes to a file even after saving it.
 if version >= 703
     set backup
-    set backupdir=~/.vim/bkup
+    "set backupdir=~/.vim/bkup
     set backupcopy=yes
 
     set undofile
-    set undodir=~/.vim/undo 
+    "set undodir=~/.vim/undo 
     set undoreload=10000
 
     " configure bkup directories
-    " set backupdir=/p/psg/swip/w/drathina/.vim/.bkup/,/tmp//
-    " set directory=/p/psg/swip/w/drathina/.vim/.swap/,/tmp//
-    " set undodir=/p/psg/swip/w/drathina/.vim/.undo/,/tmp//
+    set backupdir=/p/psg/swip/w/drathina/vim_bkup/bkup/,/tmp//
+    set directory=/p/psg/swip/w/drathina/vim_bkup/swap/,/tmp//
+    set undodir=/p/psg/swip/w/drathina/vim_bkup/undo/,/tmp//
 
 endif
 
