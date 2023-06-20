@@ -263,6 +263,10 @@ if version >= 703
     "set undodir=~/.vim/undo 
     set undoreload=10000
 
+    mkdir -p $VIM_BKUP/vim_bkup/bkup/
+    mkdir -p $VIM_BKUP/vim_bkup/swap/
+    mkdir -p $VIM_BKUP/vim_bkup/undo/
+
     " configure bkup directories
     set backupdir=$VIM_BKUP/vim_bkup/bkup/,/tmp//
     set directory=$VIM_BKUP/vim_bkup/swap/,/tmp//
