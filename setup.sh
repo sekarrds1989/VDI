@@ -26,7 +26,7 @@ mkdir -p ~/.vim/plugged
 
 mkdir -p $bkup_dir_name
 #copy vimrc 
-\cp ~/.vimrc $bkup_dir_name/
+[[ -e ~/.vimrc ]] && \cp ~/.vimrc $bkup_dir_name/
 \cp vimrc ~/.vimrc
 
 #Autoload and colors for vim
@@ -36,7 +36,7 @@ mkdir -p $bkup_dir_name
 
 
 \cp ~/.bashrc $bkup_dir_name/
-\cp ~/.bash_aliases $bkup_dir_name/
+[[ -e ~/.bash_aliases ]] && \cp ~/.bash_aliases $bkup_dir_name/
 
 # below given hack is needed for intel work environment
 _user="$(id -u -n)"
@@ -44,6 +44,7 @@ _user="$(id -u -n)"
 \cp bashrc ~/.bash_$_user
 \cp bash_aliases ~/.bash_aliases
 
+[[ -e ~/.tmux_conf ]] && \cp ~/.tmux_conf $bkup_dir_name/
 \cp tmux.conf ~/.tmux.conf
 
 echo "#!/bin/bash" > ~/.bashrc.$_user
