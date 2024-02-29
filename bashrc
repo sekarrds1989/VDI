@@ -180,6 +180,9 @@ set keyseq-timeout 0
 # https://unix.stackexchange.com/questions/659150/tmux-sessions-get-killed-on-ssh-logout
 # alias tmux="TERM=screen-256color-bce tmux"
 
+# i was not getting vim colors inside tmux. this solved it
+export TERM=linux
+
 
 if [ -s ~/.bashrc ]; then
 	source ~/.bashrc;
