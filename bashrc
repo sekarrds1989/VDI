@@ -178,7 +178,7 @@ set keyseq-timeout 0
 
 # https://stackoverflow.com/questions/10158508/lose-vim-colorscheme-in-tmux-mode/41626377
 # https://unix.stackexchange.com/questions/659150/tmux-sessions-get-killed-on-ssh-logout
-alias tmux="TERM=screen-256color-bce tmux"
+# alias tmux="TERM=screen-256color-bce tmux"
 
 
 if [ -s ~/.bashrc ]; then
