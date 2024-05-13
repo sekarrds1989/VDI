@@ -91,7 +91,7 @@
 " To deterring interruption:
    let GtagsCscope_Keep_Alive = 1
 " If you hope auto loading:
-   let GtagsCscope_Auto_Load = 1
+   let GtagsCscope_Auto_Load = 0
 " To use 'vim -t ', ':tag' and '<C-]>'
    set cscopetag
 "
